@@ -1,0 +1,15 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: auth-service
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8010/eureka
+
+jwt:
+  secret: Y60COK8tXHO5FfM7Xp8IYX4ZLfAXxlTE
+  expirationMs: 86400000  # 1 ngày

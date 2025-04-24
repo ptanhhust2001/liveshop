@@ -1,0 +1,25 @@
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8010/eureka
+
+# spring.cloud.gateway.discovery.locator.enabled: true
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: users-status-check
+          uri: lb://user-ws
+          predicates:
+            - Path=/user-ws/users/status/check
+            - Method=GET
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-ws/(?<segment>.*), /${segment}
